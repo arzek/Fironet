@@ -2,12 +2,15 @@
 
 namespace backend\controllers;
 
+
 use Yii;
 use app\models\Group;
 use app\models\GroupSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\User;
+
 
 /**
  * GroupController implements the CRUD actions for Group model.
@@ -51,8 +54,13 @@ class GroupController extends Controller
      */
     public function actionView($id)
     {
+        $users = User::find()->where(['id_group' => $id])->all();
+        $free_users =  User::find()->where(['id_group' => 0])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'free_users' => $free_users,
+            'users' => $users,
+            'i' => 1
         ]);
     }
 
