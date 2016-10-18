@@ -54,4 +54,8 @@ class Group extends \yii\db\ActiveRecord
     {
         return $this->hasMany(User::className(), ['id_group' => 'id']);
     }
+    public function getDate()
+    {
+        return date('  H:i:s d-m-Y', strtotime($this->date));
+    }
 }
