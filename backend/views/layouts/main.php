@@ -28,15 +28,15 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Pazorini',
+        'brandLabel' => 'Fironet',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'User', 'url' => ['/user/index']],
-        ['label' => 'Group', 'url' => ['/group/index']],
+        ['label' => 'Пользователи', 'url' => ['/user/index']],
+        ['label' => 'Группы', 'url' => ['/group/index']],
 
     ];
     if (Yii::$app->user->isGuest) {
@@ -69,7 +69,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Pazorini <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Fironet <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
