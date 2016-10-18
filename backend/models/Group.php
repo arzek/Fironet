@@ -42,8 +42,8 @@ class Group extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'date' => 'Date',
+            'name' => 'Имя',
+            'date' => 'Дата создания',
         ];
     }
 
