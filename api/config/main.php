@@ -48,9 +48,11 @@ return [
             'rules' => [
                 '/users/crete' => 'users/crete',
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'user',
+                    'except' => ['create','delete'],
                     'extraPatterns' =>
                     [
                     'POST create' => 'create_user',
+                    'POST delete' => 'delete_user',
                     ],
                 ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'group'],
