@@ -14,7 +14,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-            'baseUrl' => 'api'
+            'baseUrl' => '/api'
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -40,9 +40,10 @@ return [
 
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
             ],
         ],
 

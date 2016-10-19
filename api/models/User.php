@@ -1,15 +1,26 @@
 <?php
+
+namespace app\models;
+
+use Yii;
+use app\models\Group;
 /**
- * Created by PhpStorm.
- * User: Artem
- * Date: 19.10.2016
- * Time: 10:43
+ * This is the model class for table "user".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property integer $id_group
+ * @property string $date
  */
-
-namespace frontend\models;
-
-
-class User
+class User extends \yii\db\ActiveRecord
 {
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'user';
+    }
+
 
 }
