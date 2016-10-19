@@ -21,11 +21,21 @@ class AjaxController extends Controller
 
         $str = '';
 
-        foreach ($free_users as $user) {
-            $str .= "<option value='$user->id'>$user->name</option>";
+        if($free_users)
+        {
+            foreach ($free_users as $user) {
+                $str .= "<option value='$user->id'>$user->name</option>";
+            }
+
+            echo json_encode([1,$str]);
+        }else
+        {
+            $str .= "<option value='0'>Свободных пользователей не найдено</option>";
+            echo json_encode([0,$str]);
         }
 
-        echo $str;
+
+
     }
 
     public function actionAdd_user_for_group()

@@ -6,9 +6,21 @@ $(document).ready(function () {
         $.ajax({
             url: 'http://'+location.hostname +'/admin/ajax/free_user',
             cache: false,
-            success: function (city)
+            success: function (result)
             {
-                $('.select-add-user').html(city);
+                var res = JSON.parse(result);
+
+                console.log(res);
+                $('.select-add-user').html(res[1]);
+                if(res[0] == 0)
+                {
+                    $('.add-new-user-btn').attr('disabled','disabled');
+                }else
+                {
+                    $('.add-new-user-btn').removeAttr('disabled');
+                }
+
+
             }
         });
     });
@@ -17,6 +29,9 @@ $(document).ready(function () {
      */
     $('.add-new-user-btn').click(function () {
         var id_user = $('.select-add-user option:selected').val();
+
+
+
         var data = getUrlVar();
 
 
