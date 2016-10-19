@@ -16,13 +16,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Редактировать ', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <!--<?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]) ?>-->
+        <button class="btn btn-danger delete-group" >
+            Удалить
+        </button>
     </p>
 
     <?= DetailView::widget([
@@ -45,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <table class="table table-striped table-bordered detail-view">
         <thead>
         <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Имя</th>
             <th></th>
         </tr>
@@ -54,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php foreach ($users as $user):  ?>
 
         <tr class="user-for-group-item-<?=$user->id?>">
-            <td class="col-md-1 count" ><?=$i?></td>
+            <td class="col-md-1 " ><?=$user->id?></td>
             <td class="col-md-8"><?=$user->name?></td>
             <td class="col-md-1">
                 <a href="#" class="delete-user-for-group" id="<?=$user->id?>">
@@ -63,7 +66,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
         </tr>
-            <?php $i++; ?>
         <?php endforeach; ?>
 
         </tbody>

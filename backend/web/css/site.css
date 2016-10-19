@@ -118,3 +118,7 @@ a.desc:after {
 {
     float: left;
 }
+.summary
+{
+    display: none;
+}

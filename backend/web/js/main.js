@@ -29,7 +29,7 @@ $(document).ready(function () {
             {
                 var user = JSON.parse(data);
                 var list_user = $('.user-for-group-item');
-                $('.user-for-group').append('<tr class="user-for-group-item-'+user.id+'"> <td class="col-md-1 count">'+(list_user.length+1)  +'</td> <td class="col-md-8">'+user.name+'</td> <td class="col-md-1">  <a href="#" class="delete-user-for-group" id="'+user.id+'"> <span class="glyphicon glyphicon-trash" ></span></a></tr>');
+                $('.user-for-group').append('<tr class="user-for-group-item-'+user.id+'"> <td class="col-md-1 count">'+user.id +'</td> <td class="col-md-8">'+user.name+'</td> <td class="col-md-1">  <a href="#" class="delete-user-for-group" id="'+user.id+'"> <span class="glyphicon glyphicon-trash" ></span></a></tr>');
                 $('.btn-close').click();
             }
         });
@@ -57,6 +57,29 @@ $(document).ready(function () {
             }
         });
     });
+    /**
+     * TODO Delete group
+     */
+    $('.delete-group').click(function () {
+        var data = getUrlVar();
+
+        $.ajax({
+            url: 'http://'+location.hostname +'/admin/ajax/delete_group',
+            cache: false,
+            data:{id_group: data.id },
+            type: "POST",
+            success: function (result)
+            {
+                if(result == 1)
+                {
+                    location.href = 'http://'+location.hostname+'/admin/group/index';
+                }else
+                {
+                    toastr.warning("Вы не можете удалять группы когда у них есть пользователи");
+                }
+            }
+        });
+    });
 
 });
 function getUrlVar(){
@@ -70,5 +93,5 @@ function getUrlVar(){
         valueAndKey = arrayVar[i].split('=');
         resultArray[valueAndKey[0]] = valueAndKey[1];
     }
-    return resultArray; // возвращаем результат
+    return resultArray;
 }
