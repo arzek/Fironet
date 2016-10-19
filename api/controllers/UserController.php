@@ -30,8 +30,6 @@ class UserController extends ActiveController
 
             return $user;
         }
-
-
     }
     public function actionDelete_user()
     {

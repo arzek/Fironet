@@ -55,7 +55,15 @@ return [
                     'POST delete' => 'delete_user',
                     ],
                 ],
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'group'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'group','except' => ['create','delete'],
+                    'extraPatterns' =>
+                        [
+                            'POST create' => 'create_group',
+                            'POST add-user' => 'add_user',
+                            'POST delete-user' => 'delete_user',
+                            'POST delete' => 'delete_group',
+                        ],
+                ],
 
 
             ],
