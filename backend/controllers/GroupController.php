@@ -38,6 +38,9 @@ class GroupController extends Controller
      */
     public function actionIndex()
     {
+        if(Yii::$app->user->isGuest)
+        return $this->redirect('/admin/site/login');
+
         $searchModel = new GroupSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -54,6 +57,9 @@ class GroupController extends Controller
      */
     public function actionView($id)
     {
+        if(Yii::$app->user->isGuest)
+            return $this->redirect('/admin/site/login');
+
         $users = User::find()->where(['id_group' => $id])->all();
         $free_users =  User::find()->where(['id_group' => 0])->all();
         return $this->render('view', [
@@ -71,6 +77,9 @@ class GroupController extends Controller
      */
     public function actionCreate()
     {
+        if(Yii::$app->user->isGuest)
+            return $this->redirect('/admin/site/login');
+
         $model = new Group();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -90,6 +99,9 @@ class GroupController extends Controller
      */
     public function actionUpdate($id)
     {
+        if(Yii::$app->user->isGuest)
+            return $this->redirect('/admin/site/login');
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -101,18 +113,6 @@ class GroupController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing Group model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
 
     /**
      * Finds the Group model based on its primary key value.
