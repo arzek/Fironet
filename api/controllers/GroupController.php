@@ -123,4 +123,23 @@ class GroupController extends ActiveController
             }
         }
     }
+    public function actionUpdate_group()
+    {
+        if(!isset($_POST['name_group']) || !isset($_POST['id_group']) || !isset($_POST['token']) || $_POST['token'] != '$2y$13$j.XiqtNHgPkAurlyh6sjpONNJq5ufgKL7eA9ErY./C.B54wHnuo6q')
+        {
+            print  403;
+        }else
+        {
+            $group = Group::findOne($_POST['id_group']);
+            if(!$group)
+            {
+                echo "Group not found";
+                die;
+            }
+
+            $group->name = $_POST['name_group'];
+            $group->save();
+            print "OK";
+        }
+    }
 }

@@ -44,4 +44,25 @@ class UserController extends ActiveController
             return "Ok";
         }
     }
+    public function actionUpdate_user()
+    {
+
+       if(!isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['token']) || $_POST['token'] != '$2y$13$j.XiqtNHgPkAurlyh6sjpONNJq5ufgKL7eA9ErY./C.B54wHnuo6q')
+        {
+            print  403;
+        }else
+        {
+            $user = User::findOne($_POST['id']);
+            if(!$user)
+            {
+                echo "User not found";
+                die;
+            }
+
+            $user->name = $_POST['name'];
+            $user->save();
+
+            return "Ok";
+        }
+    }
 }
