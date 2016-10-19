@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use app\models\Group;
 /**
  * This is the model class for table "user".
  *
@@ -28,7 +28,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'id_group'], 'required'],
+            [['name'], 'required'],
             [['id_group'], 'integer'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 255],
@@ -42,9 +42,24 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'id_group' => 'Id Group',
-            'date' => 'Date',
+            'name' => 'Имя',
+            'id_group' => 'Группа',
+            'date' => 'Дата создания',
         ];
+    }
+    public function getGroup()
+    {
+        if($this->id_group != 0)
+        {
+            $group = Group::findOne($this->id_group);
+            return $group->name;
+        }else
+        {
+            return "Пользователь не состоит в группах";
+        }
+    }
+    public function getDate()
+    {
+        return date('  H:i:s d-m-Y', strtotime($this->date));
     }
 }
