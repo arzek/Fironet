@@ -28,7 +28,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'id_group'], 'required'],
+            [['name'], 'required'],
             [['id_group'], 'integer'],
             [['date'], 'safe'],
             [['name'], 'string', 'max' => 255],
