@@ -42,8 +42,8 @@ class Group extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'date' => 'Date',
+            'name' => 'Имя',
+            'date' => 'Дата создания',
         ];
     }
 
@@ -53,5 +53,9 @@ class Group extends \yii\db\ActiveRecord
     public function getUsers()
     {
         return $this->hasMany(User::className(), ['id_group' => 'id']);
+    }
+    public function getDate()
+    {
+        return date('  H:i:s d-m-Y', strtotime($this->date));
     }
 }
