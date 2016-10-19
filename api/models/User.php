@@ -21,6 +21,36 @@ class User extends \yii\db\ActiveRecord
     {
         return 'user';
     }
+    public function fields()
+    {
+        return [
 
+            'id',
+
+            'name',
+
+            'group' => function () {
+                return $this->getGroup();
+            },
+            'date' => function(){
+                return $this->getDate();
+            }
+        ];
+    }
+    public function getGroup()
+    {
+        if($this->id_group != 0)
+        {
+            $group = Group::findOne($this->id_group);
+            return $group->name;
+        }else
+        {
+            return "Пользователь не состоит в группах";
+        }
+    }
+    public function getDate()
+    {
+        return date('  H:i:s d-m-Y', strtotime($this->date));
+    }
 
 }

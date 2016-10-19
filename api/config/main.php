@@ -14,7 +14,10 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
-            'baseUrl' => '/api'
+            'baseUrl' => '/api',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -43,8 +46,16 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+                '/users/crete' => 'users/crete',
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'user',
+                    'extraPatterns' =>
+                    [
+                    'POST create' => 'create_user',
+                    ],
+                ],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'group'],
+
+
             ],
         ],
 
